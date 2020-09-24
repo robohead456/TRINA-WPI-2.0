@@ -1,7 +1,7 @@
 # TRINA-WPI-2.0
 WPI HIRO Lab TRINA 2.0 ROS packages. This nursing robot comprises the Intel realsense cameras, Kinova robot arms and Fetch freight robot base.
 
-![image](TRINA-WPI-2.0.png)
+![image](demo/TRINA-WPI-2.0.png)
 
 ## Dependencies
 This repository has been developed and tested in Ubuntu 18.04 and ROS Melodic only. Other version may work but it is not guaranteed.
@@ -111,7 +111,7 @@ This repository has been developed and tested in Ubuntu 18.04 and ROS Melodic on
 
   `rostopic pub -1 /trina2/right_arm_joint_1_position_controller/command std_msgs/Float64 "data: 1.0"`
   
-  It is advisable to write customized nodes to control the robot arms instead of using long command line.
+  It is advisable to write customized nodes to control the robot arms instead of using a long command line.
   
   You could also use trajectory controllers and MoveIt to control the robot arms. Drivers are provided by `ros_kortex`. This part is commented out in **trina2.launch**. You would need to uncomment it and modify the controller part to use trajectory controllers instead of position controllers. (TODO) For now, only one robot arm can use MoveIt at a time.
 
@@ -120,6 +120,8 @@ This repository has been developed and tested in Ubuntu 18.04 and ROS Melodic on
 - Launch navigation GUI:
 
   `rosrun trina2_navigation_gui trina2_navigation_gui`
+  
+  ![image](demo/navigation_gui.png)
 
 ## Contents
 
