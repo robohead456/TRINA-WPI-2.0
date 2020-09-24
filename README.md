@@ -109,7 +109,7 @@ This repository has been developed and tested in Ubuntu 18.04 and ROS Melodic on
 
 - To control the robot arms, you could use position controllers such as
 
-  `rostopic pub -1 /trina2/right_arm_joint_1_position_controller/command std_msgs/Float64 "data: 1.0"`
+  `rostopic pub -1 /right_arm_joint_1_position_controller/command std_msgs/Float64 "data: 1.0"`
   
   It is advisable to write customized nodes to control the robot arms instead of using a long command line.
   
