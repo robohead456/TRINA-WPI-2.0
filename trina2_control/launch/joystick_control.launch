@@ -1,0 +1,51 @@
+<launch>
+    
+    <!-- Set the joystick input -->
+    <arg name="joystick" default="js0"/>
+    <arg name="robot_name" default="trina2"/>
+
+
+    <!-- Base control -->
+    <!-- joy node -->
+    <node respawn="true" pkg="joy" type="joy_node" name="base_joystick" >
+        <param name="dev" type="string" value="/dev/input/$(arg joystick)" />
+        <param name="deadzone" value="0.12" />
+    </node>
+
+    <!-- teleoperation node -->
+    <node name="joystick_base_teleop" pkg="teleop_twist_joy" type="teleop_node" >
+        <!-- Axes -->
+        <param name="axis_linear" value="1" type="int"/>
+        <param name="axis_angular" value="0" type="int"/>
+        <param name="scale_linear" value="0.75" type="double"/>
+        <param name="scale_angular" value="0.75" type="double"/>
+        <param name="scale_linear_turbo" value="1.5" type="double"/>
+        <param name="scale_angular_turbo" value="1.5" type="double"/>
+        <param name="enable_button" value="4" type="int"/>
+        <param name="enable_turbo_button" value="0" type="int"/>
+
+        <remap from="/cmd_vel" to="/base_controller/cmd_vel" />
+    </node>
+
+
+    <!-- Main camera control-->
+    <!-- joy node -->
+    <node respawn="true" pkg="joy" type="joy_node" name="main_camera_joystick" >
+        <param name="dev" type="string" value="/dev/input/$(arg joystick)" />
+        <param name="deadzone" value="0.12" />
+        <param name="autorepeat_rate" value="20" />
+    </node>
+
+    <!-- teleoperation node -->
+    <node name="main_camera_control_twist_joy" pkg="trina2_control" type="camera_control_node"> 
+        <!-- Axes -->
+        <param name="axis_angular_yaw" value="3" type="int"/>
+        <param name="axis_angular_pitch" value="4" type="int"/>
+        <param name="scale_angular" value="0.4" type="double"/>
+        <param name="enable_button" value="5" type="int"/>
+        <param name="enable_turbo_button" value="-1"/>
+
+        <remap from="/pitch_yaw" to="/main_camera_controller/pitch_yaw" />
+    </node>
+
+</launch>
