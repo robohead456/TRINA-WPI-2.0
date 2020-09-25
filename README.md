@@ -51,13 +51,11 @@ This repository has been developed and tested in Ubuntu 18.04 and ROS Melodic on
   
 - If you need to use or develop graphical user interface, a visual interface for navigation is built based on Qt5. 
 
-  `sudo apt-get install ros-melodic-qt-create`
+  - `sudo apt-get install ros-melodic-qt-create`
+  - `sudo apt-get install ros-melodic-qt-build`
+  - `sudo apt-get install qtmultimedia5-dev`
   
-  `sudo apt-get install ros-melodic-qt-build`
-  
-  `sudo apt-get install qtmultimedia5-dev`
-  
-  If not, you should delete **trina2_navigation_gui** package or clone code from the branch without Gui. Otherwise it will cause make error.
+  If not, you should delete **trina2_navigation_gui** package or clone code from the branch without GUI. Otherwise it will cause make error.
   
   To make change of the current interface or develop your own, you will still need to install QtCreator and configure it.
 
