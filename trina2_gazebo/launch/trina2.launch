@@ -47,7 +47,7 @@
             <arg name="gui" value="$(arg gazebo_gui)"/>
             <arg name="use_sim_time" value="$(arg use_sim_time)"/>
             <arg name="debug" value="$(arg debug)"/>
-            <arg name="paused" value="$(arg paused)"/>
+            <arg name="paused" value="$(arg paused)"/> 
             <arg name="world_name" value="$(arg world_file)"/>
     </include>
 
@@ -195,5 +195,8 @@
     <node name="rviz" pkg="rviz" type="rviz" 
         args="-d $(arg rviz_config)"
         if="$(arg start_rviz)"/> 
+
+    <!-- Start the robot in the right config if it doesn't--> 
+    <node name="starting_position_controlller" pkg="trina2_control" type="get_into_start_position.py" />
 
 </launch>
