@@ -9,7 +9,7 @@ TrajectoryPlannerROS:
   acc_lim_y: 2.0
 
   yaw_goal_tolerance: 0.2
-  path_distance_bias: 5
+  path_distance_bias: 20 # was 10, OG was 5
 
   holonomic_robot: true
   meter_scoring: true

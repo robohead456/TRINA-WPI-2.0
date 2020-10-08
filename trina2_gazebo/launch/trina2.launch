@@ -39,6 +39,7 @@
     <!-- Gazebo environment -->
     <env name="GAZEBO_MODEL_PATH" value="$(find hospital_gazebo)/models:${GAZEBO_MODEL_PATH}" />
     <arg name="world_name" default="hospital_small"/>
+    <!-- <arg name="world_name" default="single_room"/> -->
     <arg name="world_file" default="$(find hospital_gazebo)/worlds/$(arg world_name).world"/>
     
 

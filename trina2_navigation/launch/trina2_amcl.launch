@@ -6,6 +6,7 @@
 
   <!-- Map Server -->
   <arg name="world_name" default="hospital_small"/>
+  <!-- <arg name="world_name" default="single_room"/> -->
   <node name="map_server" pkg="map_server" type="map_server" 
         args="$(find trina2_navigation)/maps/$(arg world_name).yaml" />
 
