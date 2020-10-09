@@ -77,7 +77,7 @@
             -J $(arg right_prefix)joint_6 1.95
             -J $(arg right_prefix)joint_7 -3.05
 
-            -J $(arg left_prefix)joint_1 -1.57
+            -J $(arg left_prefix)joint_1 -2.25
             -J $(arg left_prefix)joint_2 1.57
             -J $(arg left_prefix)joint_3 1.57
             -J $(arg left_prefix)joint_4 1.57
