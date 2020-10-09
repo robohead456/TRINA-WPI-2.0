@@ -8,9 +8,12 @@ def joints_pos_controller():
     rospy.init_node('starting_position_controlller')
     rospy.sleep(.5)
 
-    rightArmJointPositions = [-2.8, 1.57, 0, 1.15, .2, 1.95, -3.05]
-    leftArmJointPositions = [-1.57, 1.57, 1.57, 1.57, 0, 0, 1.57]
-
+    #rightArmJointPositions = [-2.8, 1.57, 0, 1.15, .2, 1.95, -3.05]
+    #leftArmJointPositions = [-1.57, 1.57, 1.57, 1.57, 0, 0, 1.57]
+    
+    rightArmJointPositions =[1.57, 1.57, 0, 0, 0, 0, 0]
+    leftArmJointPositions = [1.57, -1.57, 0,0, 0, 0, 0]
+ 
     rightJoint1 = rospy.Publisher('/right_arm_joint_1_position_controller/command', Float64, queue_size=1)
     rightJoint2 = rospy.Publisher('/right_arm_joint_2_position_controller/command', Float64, queue_size=1)
     rightJoint3 = rospy.Publisher('/right_arm_joint_3_position_controller/command', Float64, queue_size=1)
