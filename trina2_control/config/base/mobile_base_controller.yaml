@@ -40,3 +40,9 @@ base_controller:
       max_acceleration       : 10  # rad/s^2
       # has_jerk_limits        : true
       # max_jerk               : 2.5  # rad/s^3
+
+# To avoid error
+gazebo_ros_control:
+  pid_gains:
+    l_wheel_joint: {p: 3000.0, i: 0.0, d: 2.0} 
+    r_wheel_joint: {p: 3000.0, i: 0.0, d: 2.0} 
