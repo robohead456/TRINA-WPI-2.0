@@ -31,7 +31,7 @@
 
 
     <!-- Initial position in Gazebo -->
-    <arg name="x0" default="3"/>
+    <arg name="x0" default="6"/>
     <arg name="y0" default="-8"/>
     <arg name="z0" default="0"/>
     <arg name="yaw" default="1.57" />
