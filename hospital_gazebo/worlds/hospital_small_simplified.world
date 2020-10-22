@@ -6261,7 +6261,7 @@
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>model://hospital_bed/hospital_bed.dae</uri>
+              <uri>model://hospital_bed/hospital_bed_collision.dae</uri>
             </mesh>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -6308,7 +6308,7 @@
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>model://hospital_bed/hospital_bed.dae</uri>
+              <uri>model://hospital_bed/hospital_bed_collision.dae</uri>
             </mesh>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -6355,7 +6355,7 @@
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>model://hospital_bed/hospital_bed.dae</uri>
+              <uri>model://hospital_bed/hospital_bed_collision.dae</uri>
             </mesh>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -6402,7 +6402,7 @@
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>model://hospital_bed/hospital_bed.dae</uri>
+              <uri>model://hospital_bed/hospital_bed_collision.dae</uri>
             </mesh>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -6449,7 +6449,7 @@
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>model://hospital_bed/hospital_bed.dae</uri>
+              <uri>model://hospital_bed/hospital_bed_collision.dae</uri>
             </mesh>
           </geometry>
           <max_contacts>10</max_contacts>
