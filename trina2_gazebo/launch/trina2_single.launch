@@ -119,7 +119,7 @@
     respawn="false" output="screen" />
 
     <!-- Restore this part when mobile manipulation is needed-->
-    
+    <?ignore
     <!-- Start simulated Kortex Driver -->
     <!--launch-prefix="gdb -ex run args"-->
     <node name="$(arg robot_name)_$(arg right_prefix)_driver" pkg="kortex_driver" type="kortex_arm_driver" output="screen">
@@ -134,7 +134,7 @@
         <rosparam command="load" file="$(find trina2_description)/arms/config/right_twist_limits.yaml" subst_value="true"/>
         <rosparam command="load" file="$(find trina2_description)/grippers/config/right_joint_limits.yaml" subst_value="true"/>
     </node>
-    <?ignore
+    
     <node name="$(arg left_prefix)_driver" pkg="kortex_driver" type="kortex_arm_driver" output="screen">
         <param name="sim" value="true"/>
         <param name="cyclic_data_publish_rate" value="$(arg cyclic_data_publish_rate)"/>
