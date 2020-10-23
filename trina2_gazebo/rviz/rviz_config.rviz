@@ -506,7 +506,7 @@ Visualization Manager:
           Show Trail: false
           Value: true
       Name: RobotModel
-      Robot Description: robot_description
+      Robot Description: trina2_1/robot_description
       TF Prefix: trina2_1
       Update Interval: 0
       Value: true
@@ -704,4 +704,4 @@ Window Geometry:
     collapsed: true
   Width: 2779
   X: 209
-  Y: 301
+  Y: 241

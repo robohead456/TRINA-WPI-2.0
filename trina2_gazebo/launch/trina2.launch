@@ -43,31 +43,19 @@
         <arg name="world_name" value="$(arg world_file)"/>
     </include>
 
+    <!-- Start RViz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_config)" if="$(arg start_rviz)"/> 
+
     <!-- Map Server -->
     <node name="map_server" pkg="map_server" type="map_server" 
           args="$(find trina2_navigation)/maps/$(arg world_name).yaml">
         <param name="frame_id" value="/map" />
     </node>
 
-    <!-- Start RViz -->
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_config)" if="$(arg start_rviz)"/> 
-
-    <!-- Load the description for the robot -->
-    <param name="robot_description" command="$(find xacro)/xacro 
-    $(find trina2_description)/robots/urdf/trina2.xacro 
-            arm:=$(arg arm) dof:=$(arg dof) vision:=$(arg vision)
-            gripper:=$(arg gripper) ns:=$(arg robot_name) 
-            right_prefix:=$(arg right_prefix) 
-            left_prefix:=$(arg left_prefix)
-            sim:=true --inorder"/>
-
     <!-- Load robots -->
     <arg name="robot_name_1" default="$(arg robot_name)_1"/>
     <group ns="$(arg robot_name_1)">
         <param name="tf_prefix" value="$(arg robot_name_1)" />
-        <param name="amcl/initial_pose_x" value="1" />
-        <param name="amcl/initial_pose_y" value="-1" />
-        <param name="amcl/initial_pose_a" value="1.57" />
         
         <include file="$(find trina2_gazebo)/launch/trina2_single.launch" >
             <arg name="robot_name" default="$(arg robot_name_1)"/>
@@ -83,6 +71,9 @@
             <arg name="y0" default="-1"/>
             <arg name="yaw" default="1.57"/>
         </include>
+        <param name="amcl/initial_pose_x" value="1" />
+        <param name="amcl/initial_pose_y" value="-1" />
+        <param name="amcl/initial_pose_a" value="1.57" />
     </group>
 
 </launch>
