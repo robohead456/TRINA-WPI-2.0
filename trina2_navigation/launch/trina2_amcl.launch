@@ -28,9 +28,6 @@
 
   <!-- Move Base -->
   <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
-    <remap from="map" to="/map" />
-    <remap from="odom" to="$(arg odom_frame)"/>
-    <remap from="scan" to="$(arg scan)"/>
     <remap from="cmd_vel" to="$(arg cmd_vel)"/>
     
     <rosparam file="$(find trina2_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap" 
