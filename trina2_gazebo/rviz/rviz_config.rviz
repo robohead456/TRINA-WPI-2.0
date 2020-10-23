@@ -117,47 +117,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        left_arm_cam_bottom_screw_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        left_arm_cam_color_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        left_arm_cam_color_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        left_arm_cam_depth_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        left_arm_cam_depth_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        left_arm_cam_left_ir_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        left_arm_cam_left_ir_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        left_arm_cam_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_arm_cam_right_ir_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        left_arm_cam_right_ir_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         left_arm_camera_color_frame:
           Alpha: 1
           Show Axes: false
@@ -170,11 +129,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        left_arm_camera_support:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         left_arm_end_effector_link:
           Alpha: 1
           Show Axes: false
@@ -344,47 +298,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        right_arm_cam_bottom_screw_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        right_arm_cam_color_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        right_arm_cam_color_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        right_arm_cam_depth_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        right_arm_cam_depth_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        right_arm_cam_left_ir_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        right_arm_cam_left_ir_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        right_arm_cam_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        right_arm_cam_right_ir_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        right_arm_cam_right_ir_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         right_arm_camera_color_frame:
           Alpha: 1
           Show Axes: false
@@ -397,11 +310,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        right_arm_camera_support:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         right_arm_end_effector_link:
           Alpha: 1
           Show Axes: false
@@ -564,7 +472,7 @@ Visualization Manager:
     - Class: rviz/Camera
       Enabled: true
       Image Rendering: background and overlay
-      Image Topic: /trina2_1/right_arm_cam/color/image_raw
+      Image Topic: /trina2_1/main_cam/color/image_raw
       Name: Camera
       Overlay Alpha: 0.5
       Queue Size: 2
@@ -703,5 +611,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 2779
-  X: 209
-  Y: 241
+  X: 554
+  Y: 270
