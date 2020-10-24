@@ -26,8 +26,8 @@
     <!-- Load the description for the robot -->
     <param name="robot_description" command="$(find xacro)/xacro --inorder 
         $(find trina2_description)/robots/urdf/trina2.xacro 
-            arm:=$(arg arm) dof:=$(arg dof) vision:=$(arg vision)
-            gripper:=$(arg gripper) ns:=$(arg robot_name) 
+            arm:=$(arg arm) dof:=$(arg dof) 
+            vision:=$(arg vision) gripper:=$(arg gripper)
             right_prefix:=$(arg right_prefix) 
             left_prefix:=$(arg left_prefix)
             sim:=true"/>
@@ -74,13 +74,13 @@
 
     <!-- Start the arm trajectory controllers -->
     <node name="$(arg arm)_trajectory_controller_spawner" pkg="controller_manager" type="spawner" 
-        respawn="false" output="screen" args=" --stopped
+        respawn="false" output="screen" args=" 
             $(arg right_prefix)$(arg arm)_joint_trajectory_controller 
             $(arg left_prefix)$(arg arm)_joint_trajectory_controller" />
 
     <!-- Start the arm position controllers -->
     <node name="$(arg arm)_position_controllers_spawner" pkg="controller_manager" type="spawner" 
-        respawn="false" output="screen" args="
+        respawn="false" output="screen" args=" --stopped
             $(arg right_prefix)joint_1_position_controller
             $(arg right_prefix)joint_2_position_controller
             $(arg right_prefix)joint_3_position_controller
@@ -118,7 +118,16 @@
     <node name="main_camera_interface" pkg="trina2_control" type="main_camera_control_interface"
     respawn="false" output="screen" />
 
-    <!-- Restore this part when mobile manipulation is needed-->
+    <!-- Start MoveIt main executable -->
+    <include file="$(find trina2_moveit_config)/launch/move_group.launch">
+        <arg name="publish_monitored_planning_scene" value="true" />
+    </include>
+
+    <!-- Home the robot in the right config if it doesn't--> 
+    <node name="starting_position_controlller" pkg="trina2_control" type="get_into_start_position.py" 
+    args="$(arg robot_name)"/>
+    
+    <!-- TODO Driver is needed when a real Kinova robot is used-->
     <?ignore
     <!-- Start simulated Kortex Driver -->
     <!--launch-prefix="gdb -ex run args"-->
@@ -145,35 +154,17 @@
         <param name="prefix" value="$(arg left_prefix)"/>
         <rosparam command="load" file="$(find trina2_description)/arms/config/left_joint_limits.yaml" subst_value="true"/>
         <rosparam command="load" file="$(find trina2_description)/arms/config/left_twist_limits.yaml" subst_value="true"/>
-        <!-- If there is a gripper, load the active joint names for it -->
         <rosparam command="load" file="$(find trina2_description)/grippers/config/left_joint_limits.yaml" subst_value="true"/>
     </node>
-    
-    <!-- Start MoveIt main executable -->
-    <!-- TODO Find cleaner way to do that and that will work with other arms -->
-    <include file="$(find kortex_description)/../kortex_move_it_config/$(arg arm)_$(arg gripper)_move_it_config/launch/move_group.launch">
-        <arg name="dof" value="$(arg dof)"/>
-        <arg name="prefix" value="$(arg right_prefix)"/>
-    </include>
-    <!-- TODO Cannot run two MoveIt at the same time
-    <include file="$(find kortex_description)/../kortex_move_it_config/$(arg arm)_$(arg gripper)_move_it_config/launch/move_group.launch">
-        <arg name="dof" value="$(arg dof)"/>
-        <arg name="prefix" value="$(arg left_prefix)"/>
-    </include> -->
     ?>
     
     <!-- Start robot state publisher -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
     respawn="false" output="screen" />
-    
-    <!-- Start the robot in the right config if it doesn't--> 
-    <node name="starting_position_controlller" pkg="trina2_control" type="get_into_start_position.py" 
-    args="$(arg robot_name)"/>
 
     <!-- Navigation package -->
     <include file="$(find trina2_navigation)/launch/trina2_amcl.launch">
         <arg name="robot_name" value="$(arg robot_name)"/>
     </include>
-
 
 </launch>

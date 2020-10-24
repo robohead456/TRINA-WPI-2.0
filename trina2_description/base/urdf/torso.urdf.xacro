@@ -2,7 +2,7 @@
 
 <robot name="robot_torso" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:macro name="load_torso" params="ns">
+    <xacro:macro name="load_torso">
     
         <xacro:property name="mass" value="5.0" /> 
         <xacro:property name="width" value="0.15" /> 
@@ -43,7 +43,7 @@
             <axis xyz="0 0 1"/>
         </joint>
 
-        <link name="right_shoulder">
+        <link name="right_shoulder_link">
             <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
@@ -67,14 +67,14 @@
             </inertial>
         </link>
 
-        <joint name="right_shoulder_to_torso" type="fixed">
-            <child link="right_shoulder" />
+        <joint name="right_shoulder_to_torso_joint" type="fixed">
+            <child link="right_shoulder_link" />
             <parent link="torso" />
             <origin xyz="0 0 0.7" rpy="1.57 0 0" />  
             <axis xyz="0 0 1"/>  
         </joint> 
 
-        <link name="left_shoulder">
+        <link name="left_shoulder_link">
             <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
@@ -98,8 +98,8 @@
             </inertial>
         </link>
 
-        <joint name="left_shoulder_to_torso" type="fixed">
-            <child link="left_shoulder" />
+        <joint name="left_shoulder_to_torso_joint" type="fixed">
+            <child link="left_shoulder_link" />
             <parent link="torso" />
             <origin xyz="0 0 0.7" rpy="-1.57 0 0" />  
             <axis xyz="0 0 1"/>  

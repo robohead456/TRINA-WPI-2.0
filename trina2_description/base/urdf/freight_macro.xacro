@@ -2,7 +2,7 @@
 
 <robot name="freight" xmlns:xacro="http://www.ros.org/wiki/xacro">
   
-  <xacro:macro name="load_base" params="ns">
+  <xacro:macro name="load_base">
 
       <!-- <xacro:include filename="$(find fetch_description)/robots/freight.urdf.xacro" /> -->
       <xacro:include filename="$(find trina2_description)/base/urdf/freight.urdf.xacro" />

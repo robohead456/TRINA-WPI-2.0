@@ -2,7 +2,7 @@
 
 <robot name="main_camera" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:macro name="load_main_camera" params="ns prefix main_camera_base
+    <xacro:macro name="load_main_camera" params="prefix main_camera_base
                                                  fov:=69.4 width:=1920 height:=1080 
                                                  update_rate:=60 wide_flag:=true">
 
@@ -136,7 +136,7 @@
         </transmission>
 
         <xacro:include filename="$(find trina2_description)/camera/urdf/_d435.urdf.xacro"/>
-        <xacro:sensor_d435 name="${prefix}cam" topics_ns="${ns}" parent="${prefix}camera_pitch_link"
+        <xacro:sensor_d435 name="${prefix}cam" parent="${prefix}camera_pitch_link"
                            fov="${fov}" width="${width}" height="${height}"
                            update_rate="${update_rate}"  wide_flag="${wide_flag}">
             <origin xyz="0.02 0.0 0.0" rpy="-1.57 0 0" /> 
