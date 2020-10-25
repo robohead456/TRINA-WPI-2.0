@@ -3,8 +3,8 @@
     <!-- Arguments -->
     <!-- Robot name -->
     <arg name="robot_name" default="trina2"/>
-    <arg name="right_prefix" default="right_arm_" />
-    <arg name="left_prefix" default="left_arm_" />
+    <arg name="right_arm_prefix" default="right_arm_" />
+    <arg name="left_arm_prefix" default="left_arm_" />
     <!-- Arm and gripper type -->
     <arg name="arm" default="gen3"/>
     <!-- Number of degrees of freedom of the arm -->
@@ -59,22 +59,21 @@
         <include file="$(find trina2_gazebo)/launch/trina2_single.launch" >
             <arg name="robot_name" value="$(arg robot_name_1)"/>
             <arg name="prefix" value="$(arg robot_name_1)/"/>
-            <arg name="right_prefix" value="$(arg robot_name_1)/$(arg right_prefix)" />
-            <arg name="left_prefix" value="$(arg robot_name_1)/$(arg left_prefix)" />
+            <arg name="right_prefix" value="$(arg robot_name_1)/$(arg right_arm_prefix)" />
+            <arg name="left_prefix" value="$(arg robot_name_1)/$(arg left_arm_prefix)" />
             <arg name="arm" value="$(arg arm)"/>
             <arg name="dof" value="$(arg dof)"/> 
             <arg name="vision" value="$(arg vision)"/> 
             <arg name="gripper" value="$(arg gripper)" />
             <arg name="cyclic_data_publish_rate"  value="$(arg cyclic_data_publish_rate)"/>
             
-            <arg name="x0" value="1"/>
+            <arg name="x0" value="0"/>
             <arg name="y0" value="-1"/>
             <arg name="yaw" value="1.57"/>
         </include>
-        <param name="amcl/initial_pose_x" value="1" />
+        <param name="amcl/initial_pose_x" value="0" />
         <param name="amcl/initial_pose_y" value="-1" />
         <param name="amcl/initial_pose_a" value="1.57" />
     </group>
-
 
 </launch>
