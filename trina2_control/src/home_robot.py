@@ -11,6 +11,7 @@ import moveit_msgs.msg
 import geometry_msgs.msg
 from math import pi
 from std_msgs.msg import String
+from std_srvs.srv import Empty
 from moveit_commander.conversions import pose_to_list
 
 class MoveGroupPythonInteface(object):
@@ -76,15 +77,17 @@ class MoveGroupPythonInteface(object):
 
         # The go command can be called with joint values, poses, or without any
         # parameters if you have already set the pose or joint target for the group
-        move_group1.go(joint_goal1, wait=True)
-        current_joints1 = move_group1.get_current_joint_values()
-        if not all_close(joint_goal1, current_joints1, 0.01):
+        while True:
             move_group1.go(joint_goal1, wait=True)
-
-        move_group2.go(joint_goal2, wait=True)
-        current_joints2 = move_group2.get_current_joint_values()
-        if not all_close(joint_goal2, current_joints2, 0.01):
+            current_joints1 = move_group1.get_current_joint_values()
+            if all_close(joint_goal1, current_joints1, 0.01):
+                break
+            
+        while True:
             move_group2.go(joint_goal2, wait=True)
+            current_joints2 = move_group2.get_current_joint_values()
+            if all_close(joint_goal2, current_joints2, 0.01):
+                break
 
         # Calling ``stop()`` ensures that there is no residual movement
         move_group1.stop()
@@ -102,7 +105,8 @@ def all_close(goal, actual, tolerance):
     all_equal = True
     if type(goal) is list:
         for index in range(len(goal)):
-            if abs(actual[index] - goal[index]) > tolerance:
+            if (abs(actual[index] - goal[index]) > tolerance) and \
+               (abs(abs(actual[index]-goal[index])-2*pi) > tolerance) :
                 return False
 
     elif type(goal) is geometry_msgs.msg.PoseStamped:
@@ -116,6 +120,14 @@ def all_close(goal, actual, tolerance):
 
 def main():
     try:
+        # Unpause the physics
+        rospy.loginfo("Unpausing Gazebo...")
+        rospy.wait_for_service('/gazebo/unpause_physics')
+        unpause_gazebo = rospy.ServiceProxy('/gazebo/unpause_physics', Empty)
+        resp = unpause_gazebo()
+        rospy.loginfo("Unpaused Gazebo.")
+
+        # Home robot arm
         interface = MoveGroupPythonInteface()
         interface.home_robot()
     except rospy.ROSInterruptException:
