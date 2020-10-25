@@ -1,9 +1,9 @@
 <launch>
 
-  <arg name="robot_name" default="trina2"/>
-  <arg name="scan" default="$(arg robot_name)/base_scan"/>
-  <arg name="base_frame" default="$(arg robot_name)/base_link"/>
-  <arg name="odom_frame" default="$(arg robot_name)/odom"/>
+  <arg name="prefix" default="trina2/"/>
+  <arg name="scan" default="base_scan"/>
+  <arg name="base_frame" default="$(arg prefix)base_link"/>
+  <arg name="odom_frame" default="$(arg prefix)odom"/>
 
   <!-- Map Size-->
   <arg name="xmin" default="-15"/>

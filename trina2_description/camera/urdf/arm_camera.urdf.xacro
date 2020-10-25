@@ -2,11 +2,11 @@
 
 <robot name="main_camera" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:macro name="load_arm_camera" params="prefix arm_camera_base
+    <xacro:macro name="load_arm_camera" params="prefix camera_name arm_camera_base
                                                 fov:=69.4 width:=1920 height:=1080 
                                                 update_rate:=60 wide_flag:=true">
         
-        <link name="${prefix}camera_support">
+        <link name="${prefix}support">
             <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
@@ -30,15 +30,16 @@
             </inertial>
         </link>
 
-        <joint name="${prefix}camera_support_joint" type="fixed">
+        <joint name="${prefix}support_joint" type="fixed">
             <parent link="${arm_camera_base}"/>
-            <child link="${prefix}camera_support"/>
+            <child link="${prefix}support"/>
             <origin xyz="0 0 0" rpy="0 -1.57 1.57"/>
             <axis xyz="0 0 1"/>
         </joint>
 
         <xacro:include filename="$(find trina2_description)/camera/urdf/_d435.urdf.xacro"/>
-        <xacro:sensor_d435 name="${prefix}cam" parent="${prefix}camera_support"
+        <xacro:sensor_d435 name="${camera_name}" prefix="${prefix}"
+                           parent="${prefix}support"
                            fov="${fov}" width="${width}" height="${height}"
                            update_rate="${update_rate}" wide_flag="${wide_flag}">
             <origin xyz="0.0 0.0 0.0" rpy="0 0 0" /> 

@@ -10,8 +10,10 @@
 
     <xacro:arg name="sim" default="true" />
 
-    <xacro:arg name="right_prefix" default="right_arm_" />
-    <xacro:arg name="left_prefix" default="left_arm_" />
+    <xacro:arg name="robot_name" default="trina2" />
+    <xacro:arg name="prefix" default="$(arg robot_name)/" />
+    <xacro:arg name="right_prefix" default="$(arg prefix)right_arm_" />
+    <xacro:arg name="left_prefix" default="$(arg prefix)left_arm_" />
 
     <!-- Include files -->
     <xacro:include filename="$(find trina2_description)/base/urdf/freight_macro.xacro" />
@@ -21,29 +23,29 @@
     <xacro:include filename="$(find trina2_description)/camera/urdf/arm_camera.urdf.xacro" />
 
     <!-- Load the base -->
-    <xacro:load_base/>
+    <xacro:load_base prefix="$(arg prefix)"/>
 
     <!-- Load torso -->
-    <xacro:load_torso/> 
+    <xacro:load_torso prefix="$(arg prefix)"/> 
 
     <!-- Load the right arm -->
     <xacro:load_robot arm="$(arg arm)" gripper="$(arg gripper)" dof="$(arg dof)" 
                     vision="$(arg vision)" sim="$(arg sim)" 
-                    prefix="$(arg right_prefix)" parent="right_shoulder_link"/> 
+                    prefix="$(arg right_prefix)" parent="$(arg prefix)right_shoulder_link"/> 
     <!-- Load arm camera -->
-    <xacro:load_arm_camera prefix="$(arg right_prefix)" arm_camera_base="$(arg right_prefix)camera_link"
+    <xacro:load_arm_camera prefix="$(arg right_prefix)cam_" camera_name="right_arm_cam" arm_camera_base="$(arg right_prefix)camera_link"
                            width="858" height="720" update_rate="30" wide_flag="true"/> 
 
     <!-- Load the left arm -->
     <xacro:load_robot arm="$(arg arm)" gripper="$(arg gripper)" dof="$(arg dof)" 
                     vision="$(arg vision)" sim="$(arg sim)" 
-                    prefix="$(arg left_prefix)" parent="left_shoulder_link"/> 
+                    prefix="$(arg left_prefix)" parent="$(arg prefix)left_shoulder_link"/> 
     <!-- Load arm camera -->
-    <xacro:load_arm_camera prefix="$(arg left_prefix)" arm_camera_base="$(arg left_prefix)camera_link"
+    <xacro:load_arm_camera prefix="$(arg left_prefix)cam_" camera_name="left_arm_cam" arm_camera_base="$(arg left_prefix)camera_link"
                            width="858" height="720" update_rate="30" wide_flag="true"/> 
 
     <!-- Load main camera -->
-    <xacro:load_main_camera prefix="main_" main_camera_base="torso"
+    <xacro:load_main_camera prefix="$(arg prefix)main_cam_" camera_name="main_cam" main_camera_base="$(arg prefix)torso"
                             width="858" height="720" update_rate="30" wide_flag="true"/>
 
 

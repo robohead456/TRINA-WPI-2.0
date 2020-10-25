@@ -7,8 +7,8 @@ using libgazebo_ros_openni_kinect plugin
   
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   
-  <xacro:macro name="gazebo_d435" params="camera_name reference_link 
-                                          topics_ns color_optical_frame 
+  <xacro:macro name="gazebo_d435" params="camera_name reference_link
+                                          color_optical_frame 
                                           fov:=69.4 width:=1920 height:=1080
                                           update_rate:=30" >
 

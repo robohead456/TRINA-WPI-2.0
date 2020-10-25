@@ -55,25 +55,26 @@
     <!-- Load robots -->
     <arg name="robot_name_1" default="$(arg robot_name)_1"/>
     <group ns="$(arg robot_name_1)">
-        <param name="tf_prefix" value="$(arg robot_name_1)" />
-        
+    
         <include file="$(find trina2_gazebo)/launch/trina2_single.launch" >
-            <arg name="robot_name" default="$(arg robot_name_1)"/>
-            <arg name="right_prefix" default="$(arg right_prefix)" />
-            <arg name="left_prefix" default="$(arg left_prefix)" />
-            <arg name="arm" default="$(arg arm)"/>
-            <arg name="dof" default="$(arg dof)"/> 
-            <arg name="vision" default="$(arg vision)"/> 
-            <arg name="gripper" default="$(arg gripper)" />
-            <arg name="cyclic_data_publish_rate"  default="$(arg cyclic_data_publish_rate)"/>
+            <arg name="robot_name" value="$(arg robot_name_1)"/>
+            <arg name="prefix" value="$(arg robot_name_1)/"/>
+            <arg name="right_prefix" value="$(arg robot_name_1)/$(arg right_prefix)" />
+            <arg name="left_prefix" value="$(arg robot_name_1)/$(arg left_prefix)" />
+            <arg name="arm" value="$(arg arm)"/>
+            <arg name="dof" value="$(arg dof)"/> 
+            <arg name="vision" value="$(arg vision)"/> 
+            <arg name="gripper" value="$(arg gripper)" />
+            <arg name="cyclic_data_publish_rate"  value="$(arg cyclic_data_publish_rate)"/>
             
-            <arg name="x0" default="1"/>
-            <arg name="y0" default="-1"/>
-            <arg name="yaw" default="1.57"/>
+            <arg name="x0" value="1"/>
+            <arg name="y0" value="-1"/>
+            <arg name="yaw" value="1.57"/>
         </include>
         <param name="amcl/initial_pose_x" value="1" />
         <param name="amcl/initial_pose_y" value="-1" />
         <param name="amcl/initial_pose_a" value="1.57" />
     </group>
+
 
 </launch>

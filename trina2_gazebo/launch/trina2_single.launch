@@ -3,8 +3,9 @@
     <!-- Arguments -->
     <!-- Robot name -->
     <arg name="robot_name" default="trina2"/>
-    <arg name="right_prefix" default="right_arm_" />
-    <arg name="left_prefix" default="left_arm_" />
+    <arg name="prefix" default="$(arg robot_name)/"/>
+    <arg name="right_prefix" default="$(arg prefix)right_arm_" />
+    <arg name="left_prefix" default="$(arg prefix)left_arm_" />
     <!-- Arm and gripper type -->
     <arg name="arm" default="gen3"/>
     <!-- Number of degrees of freedom of the arm -->
@@ -28,6 +29,7 @@
         $(find trina2_description)/robots/urdf/trina2.xacro 
             arm:=$(arg arm) dof:=$(arg dof) 
             vision:=$(arg vision) gripper:=$(arg gripper)
+            robot_name:=$(arg robot_name) prefix:=$(arg prefix)
             right_prefix:=$(arg right_prefix) 
             left_prefix:=$(arg left_prefix)
             sim:=true"/>
@@ -70,58 +72,60 @@
     <rosparam file="$(find trina2_control)/config/base/mobile_base_controller.yaml" 
         subst_value="true" command="load" />
     <!-- Camera controller -->
-    <rosparam file="$(find trina2_control)/config/camera/main_camera_controller.yaml" command="load" />
+    <rosparam file="$(find trina2_control)/config/camera/main_camera_controller.yaml" 
+        subst_value="true" command="load" />
 
     <!-- Start the arm trajectory controllers -->
     <node name="$(arg arm)_trajectory_controller_spawner" pkg="controller_manager" type="spawner" 
         respawn="false" output="screen" args=" 
-            $(arg right_prefix)$(arg arm)_joint_trajectory_controller 
-            $(arg left_prefix)$(arg arm)_joint_trajectory_controller" />
+            right_arm_$(arg arm)_joint_trajectory_controller 
+            left_arm_$(arg arm)_joint_trajectory_controller" />
 
     <!-- Start the arm position controllers -->
     <node name="$(arg arm)_position_controllers_spawner" pkg="controller_manager" type="spawner" 
         respawn="false" output="screen" args=" --stopped
-            $(arg right_prefix)joint_1_position_controller
-            $(arg right_prefix)joint_2_position_controller
-            $(arg right_prefix)joint_3_position_controller
-            $(arg right_prefix)joint_4_position_controller
-            $(arg right_prefix)joint_5_position_controller
-            $(arg right_prefix)joint_6_position_controller
-            $(arg right_prefix)joint_7_position_controller
+            right_arm_joint_1_position_controller
+            right_arm_joint_2_position_controller
+            right_arm_joint_3_position_controller
+            right_arm_joint_4_position_controller
+            right_arm_joint_5_position_controller
+            right_arm_joint_6_position_controller
+            right_arm_joint_7_position_controller
             
-            $(arg left_prefix)joint_1_position_controller
-            $(arg left_prefix)joint_2_position_controller
-            $(arg left_prefix)joint_3_position_controller
-            $(arg left_prefix)joint_4_position_controller
-            $(arg left_prefix)joint_5_position_controller
-            $(arg left_prefix)joint_6_position_controller
-            $(arg left_prefix)joint_7_position_controller"/>
+            left_arm_joint_1_position_controller
+            left_arm_joint_2_position_controller
+            left_arm_joint_3_position_controller
+            left_arm_joint_4_position_controller
+            left_arm_joint_5_position_controller
+            left_arm_joint_6_position_controller
+            left_arm_joint_7_position_controller"/>
 
     <!-- Start other arm controllers -->
     <node name="$(arg arm)_controllers_spawner" pkg="controller_manager" type="spawner" 
         respawn="false" output="screen" args="
-            $(arg right_prefix)joint_state_controller 
-            $(arg right_prefix)$(arg gripper)_gripper_controller
+            right_arm_joint_state_controller 
+            right_arm_$(arg gripper)_gripper_controller
 
-            $(arg left_prefix)joint_state_controller 
-            $(arg left_prefix)$(arg gripper)_gripper_controller"/>
+            left_arm_joint_state_controller 
+            left_arm_$(arg gripper)_gripper_controller"/>
 
     <!-- Start base and camera controllers -->
     <node name="other_controllers_spawner" pkg="controller_manager" type="spawner" 
         respawn="false" output="screen" args="
             base_controller
-            main_camera_pitch_controller
-            main_camera_yaw_controller"/>
+            main_cam_pitch_controller
+            main_cam_yaw_controller"/>
 
     <!-- Control Interface -->
     <!-- Start camera control interface -->
     <node name="main_camera_interface" pkg="trina2_control" type="main_camera_control_interface"
-    respawn="false" output="screen" />
+    respawn="false" output="screen">
+    </node>
 
-    <!-- Start MoveIt main executable -->
+    <!-- Start MoveIt main executable 
     <include file="$(find trina2_moveit_config)/launch/move_group.launch">
         <arg name="publish_monitored_planning_scene" value="true" />
-    </include>
+    </include> -->
 
     <!-- Home the robot in the right config if it doesn't--> 
     <node name="starting_position_controlller" pkg="trina2_control" type="get_into_start_position.py" 
@@ -164,7 +168,7 @@
 
     <!-- Navigation package -->
     <include file="$(find trina2_navigation)/launch/trina2_amcl.launch">
-        <arg name="robot_name" value="$(arg robot_name)"/>
+        <arg name="prefix" value="$(arg prefix)"/>
     </include>
 
 </launch>

@@ -2,14 +2,14 @@
 
 <robot name="robot_torso" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:macro name="load_torso">
+    <xacro:macro name="load_torso" params="prefix">
     
         <xacro:property name="mass" value="5.0" /> 
         <xacro:property name="width" value="0.15" /> 
         <xacro:property name="height" value="0.8" /> 
         <xacro:property name="axel_offset" value="-0.25" /> 
         
-        <link name="torso">
+        <link name="${prefix}torso">
             <collision>
                 <origin xyz="0 0 ${height/2}" rpy="0 0 0"/>
                 <geometry>
@@ -36,14 +36,14 @@
             </inertial>
         </link>
 
-        <joint name="torso_joint" type="fixed">
-            <parent link="chassis_link"/>
-            <child link="torso"/>
+        <joint name="${prefix}torso_joint" type="fixed">
+            <parent link="${prefix}chassis_link"/>
+            <child link="${prefix}torso"/>
             <origin xyz="-0.0 0 0.36" rpy="0 0 0"/>
             <axis xyz="0 0 1"/>
         </joint>
 
-        <link name="right_shoulder_link">
+        <link name="${prefix}right_shoulder_link">
             <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
@@ -67,14 +67,14 @@
             </inertial>
         </link>
 
-        <joint name="right_shoulder_to_torso_joint" type="fixed">
-            <child link="right_shoulder_link" />
-            <parent link="torso" />
+        <joint name="${prefix}right_shoulder_to_torso_joint" type="fixed">
+            <child link="${prefix}right_shoulder_link" />
+            <parent link="${prefix}torso" />
             <origin xyz="0 0 0.7" rpy="1.57 0 0" />  
             <axis xyz="0 0 1"/>  
         </joint> 
 
-        <link name="left_shoulder_link">
+        <link name="${prefix}left_shoulder_link">
             <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
@@ -98,9 +98,9 @@
             </inertial>
         </link>
 
-        <joint name="left_shoulder_to_torso_joint" type="fixed">
-            <child link="left_shoulder_link" />
-            <parent link="torso" />
+        <joint name="${prefix}left_shoulder_to_torso_joint" type="fixed">
+            <child link="${prefix}left_shoulder_link" />
+            <parent link="${prefix}torso" />
             <origin xyz="0 0 0.7" rpy="-1.57 0 0" />  
             <axis xyz="0 0 1"/>  
         </joint> 

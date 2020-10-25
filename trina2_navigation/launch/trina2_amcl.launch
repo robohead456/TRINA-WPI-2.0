@@ -1,10 +1,10 @@
 <launch>
 
-  <arg name="robot_name" default="trina2"/>
-  <arg name="odom_frame" default="$(arg robot_name)/odom"/>
+  <arg name="prefix" default="trina2/"/>
+  <arg name="odom_frame" default="$(arg prefix)odom"/>
   <arg name="scan" default="base_scan"/>
-  <arg name="base_frame" default="$(arg robot_name)/base_link"/>
-  <arg name="cmd_vel" default="$(arg robot_name)/base_controller/cmd_vel"/>
+  <arg name="base_frame" default="$(arg prefix)base_link"/>
+  <arg name="cmd_vel" default="base_controller/cmd_vel"/>
 
   <!-- AMCL Node -->
   <node name="amcl" pkg="amcl" type="amcl" output="screen">
@@ -29,6 +29,7 @@
   <!-- Move Base -->
   <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
     <remap from="cmd_vel" to="$(arg cmd_vel)"/>
+    <remap from="map" to="/map"/>
     
     <rosparam file="$(find trina2_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap" 
      subst_value="true"/>

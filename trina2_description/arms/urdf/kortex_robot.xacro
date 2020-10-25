@@ -24,7 +24,7 @@
 
         <!-- For gazebo -->
         <xacro:if value="${sim}">
-            <joint name="${parent}_to_${prefix}root" type="fixed">
+            <joint name="${prefix}shoulder_to_arm_root" type="fixed">
                 <child link="${prefix}base_link" />
                 <parent link="${parent}" />
                 <origin xyz="0 0 0" rpy="0 0 0" />    
