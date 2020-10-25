@@ -125,6 +125,9 @@
     <!-- Start MoveIt main executable -->
     <include file="$(find trina2_moveit_config)/launch/move_group.launch">
         <arg name="publish_monitored_planning_scene" value="true" />
+        <arg name="prefix" value="$(arg prefix)"/>
+        <arg name="right_prefix" value="$(arg right_prefix)" />
+        <arg name="left_prefix" value="$(arg left_prefix)" />
     </include> 
 
     <!-- Home the robot -->
