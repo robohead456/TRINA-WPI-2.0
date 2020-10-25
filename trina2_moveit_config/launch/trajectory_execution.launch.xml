@@ -1,4 +1,8 @@
 <launch>
+  <!-- The joint and link names prefix -->
+  <arg name="prefix" default="trina2/"/>
+  <arg name="right_prefix" default="$(arg prefix)right_arm_" />
+  <arg name="left_prefix" default="$(arg prefix)left_arm_" />
 
   <!-- This file makes it easy to include the settings for trajectory execution  -->
 
@@ -15,6 +19,10 @@
 
   <!-- Load the robot specific controller manager; this sets the moveit_controller_manager ROS parameter -->
   <arg name="moveit_controller_manager" default="trina2" />
-  <include file="$(find trina2_moveit_config)/launch/$(arg moveit_controller_manager)_moveit_controller_manager.launch.xml" />
+  <include file="$(find trina2_moveit_config)/launch/$(arg moveit_controller_manager)_moveit_controller_manager.launch.xml" >
+    <arg name="prefix" value="$(arg prefix)"/>
+    <arg name="right_prefix" value="$(arg right_prefix)" />
+    <arg name="left_prefix" value="$(arg left_prefix)" />
+  </include>
 
 </launch>

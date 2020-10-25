@@ -2,132 +2,132 @@
 # Specific joint properties can be changed with the keys [max_position, min_position, max_velocity, max_acceleration]
 # Joint limits can be turned off with [has_velocity_limits, has_acceleration_limits]
 joint_limits:
-  left_arm_finger_joint:
+  $(arg left_prefix)finger_joint:
     has_velocity_limits: true
     max_velocity: 2
     has_acceleration_limits: false
     max_acceleration: 0
-  left_arm_joint_1:
+  $(arg left_prefix)joint_1:
     has_velocity_limits: true
     max_velocity: 1.3963
     has_acceleration_limits: false
     max_acceleration: 0
-  left_arm_joint_2:
+  $(arg left_prefix)joint_2:
     has_velocity_limits: true
     max_velocity: 1.3963
     has_acceleration_limits: false
     max_acceleration: 0
-  left_arm_joint_3:
+  $(arg left_prefix)joint_3:
     has_velocity_limits: true
     max_velocity: 1.3963
     has_acceleration_limits: false
     max_acceleration: 0
-  left_arm_joint_4:
+  $(arg left_prefix)joint_4:
     has_velocity_limits: true
     max_velocity: 1.3963
     has_acceleration_limits: false
     max_acceleration: 0
-  left_arm_joint_5:
+  $(arg left_prefix)joint_5:
     has_velocity_limits: true
     max_velocity: 1.2218
     has_acceleration_limits: false
     max_acceleration: 0
-  left_arm_joint_6:
+  $(arg left_prefix)joint_6:
     has_velocity_limits: true
     max_velocity: 1.2218
     has_acceleration_limits: false
     max_acceleration: 0
-  left_arm_joint_7:
+  $(arg left_prefix)joint_7:
     has_velocity_limits: true
     max_velocity: 1.2218
     has_acceleration_limits: false
     max_acceleration: 0
-  left_arm_left_inner_finger_joint:
+  $(arg left_prefix)left_inner_finger_joint:
     has_velocity_limits: true
     max_velocity: 2
     has_acceleration_limits: false
     max_acceleration: 0
-  left_arm_left_inner_knuckle_joint:
+  $(arg left_prefix)left_inner_knuckle_joint:
     has_velocity_limits: true
     max_velocity: 2
     has_acceleration_limits: false
     max_acceleration: 0
-  left_arm_right_inner_finger_joint:
+  $(arg left_prefix)right_inner_finger_joint:
     has_velocity_limits: true
     max_velocity: 2
     has_acceleration_limits: false
     max_acceleration: 0
-  left_arm_right_inner_knuckle_joint:
+  $(arg left_prefix)right_inner_knuckle_joint:
     has_velocity_limits: true
     max_velocity: 2
     has_acceleration_limits: false
     max_acceleration: 0
-  left_arm_right_outer_knuckle_joint:
+  $(arg left_prefix)right_outer_knuckle_joint:
     has_velocity_limits: true
     max_velocity: 2
     has_acceleration_limits: false
     max_acceleration: 0
-  right_arm_finger_joint:
+  $(arg right_prefix)finger_joint:
     has_velocity_limits: true
     max_velocity: 2
     has_acceleration_limits: false
     max_acceleration: 0
-  right_arm_joint_1:
+  $(arg right_prefix)joint_1:
     has_velocity_limits: true
     max_velocity: 1.3963
     has_acceleration_limits: false
     max_acceleration: 0
-  right_arm_joint_2:
+  $(arg right_prefix)joint_2:
     has_velocity_limits: true
     max_velocity: 1.3963
     has_acceleration_limits: false
     max_acceleration: 0
-  right_arm_joint_3:
+  $(arg right_prefix)joint_3:
     has_velocity_limits: true
     max_velocity: 1.3963
     has_acceleration_limits: false
     max_acceleration: 0
-  right_arm_joint_4:
+  $(arg right_prefix)joint_4:
     has_velocity_limits: true
     max_velocity: 1.3963
     has_acceleration_limits: false
     max_acceleration: 0
-  right_arm_joint_5:
+  $(arg right_prefix)joint_5:
     has_velocity_limits: true
     max_velocity: 1.2218
     has_acceleration_limits: false
     max_acceleration: 0
-  right_arm_joint_6:
+  $(arg right_prefix)joint_6:
     has_velocity_limits: true
     max_velocity: 1.2218
     has_acceleration_limits: false
     max_acceleration: 0
-  right_arm_joint_7:
+  $(arg right_prefix)joint_7:
     has_velocity_limits: true
     max_velocity: 1.2218
     has_acceleration_limits: false
     max_acceleration: 0
-  right_arm_left_inner_finger_joint:
+  $(arg right_prefix)left_inner_finger_joint:
     has_velocity_limits: true
     max_velocity: 2
     has_acceleration_limits: false
     max_acceleration: 0
-  right_arm_left_inner_knuckle_joint:
+  $(arg right_prefix)left_inner_knuckle_joint:
     has_velocity_limits: true
     max_velocity: 2
     has_acceleration_limits: false
     max_acceleration: 0
-  right_arm_right_inner_finger_joint:
+  $(arg right_prefix)right_inner_finger_joint:
     has_velocity_limits: true
     max_velocity: 2
     has_acceleration_limits: false
     max_acceleration: 0
-  right_arm_right_inner_knuckle_joint:
+  $(arg right_prefix)right_inner_knuckle_joint:
     has_velocity_limits: true
     max_velocity: 2
     has_acceleration_limits: false
     max_acceleration: 0
-  right_arm_right_outer_knuckle_joint:
+  $(arg right_prefix)right_outer_knuckle_joint:
     has_velocity_limits: true
     max_velocity: 2
     has_acceleration_limits: false

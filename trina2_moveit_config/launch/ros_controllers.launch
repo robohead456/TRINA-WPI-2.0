@@ -6,6 +6,6 @@
 
   <!-- Load the controllers -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" args="left_arm_robotiq_2f_85_gripper_controller right_arm_robotiq_2f_85_gripper_controller "/>
+    output="screen" args=""/>
 
 </launch>
