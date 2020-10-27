@@ -18,9 +18,9 @@
     <!-- Include files -->
     <xacro:include filename="$(find trina2_description)/base/urdf/freight_macro.xacro" />
     <xacro:include filename="$(find trina2_description)/base/urdf/torso.urdf.xacro" />
-    <xacro:include filename="$(find trina2_description)/arms/urdf/kortex_robot.xacro" />
+<!--    <xacro:include filename="$(find trina2_description)/arms/urdf/kortex_robot.xacro" />-->
     <xacro:include filename="$(find trina2_description)/camera/urdf/main_camera_support.urdf.xacro" />
-    <xacro:include filename="$(find trina2_description)/camera/urdf/arm_camera.urdf.xacro" />
+<!--    <xacro:include filename="$(find trina2_description)/camera/urdf/arm_camera.urdf.xacro" />-->
 
     <!-- Load the base -->
     <xacro:load_base prefix="$(arg prefix)"/>
@@ -28,21 +28,21 @@
     <!-- Load torso -->
     <xacro:load_torso prefix="$(arg prefix)"/> 
 
-    <!-- Load the right arm -->
-    <xacro:load_robot arm="$(arg arm)" gripper="$(arg gripper)" dof="$(arg dof)" 
-                    vision="$(arg vision)" sim="$(arg sim)" 
-                    prefix="$(arg right_prefix)" parent="$(arg prefix)right_shoulder_link"/> 
-    <!-- Load arm camera -->
-    <xacro:load_arm_camera prefix="$(arg right_prefix)cam_" camera_name="right_arm_cam" arm_camera_base="$(arg right_prefix)camera_link"
-                           width="858" height="720" update_rate="30" wide_flag="true"/> 
+<!--    &lt;!&ndash; Load the right arm &ndash;&gt;-->
+<!--    <xacro:load_robot arm="$(arg arm)" gripper="$(arg gripper)" dof="$(arg dof)" -->
+<!--                    vision="$(arg vision)" sim="$(arg sim)" -->
+<!--                    prefix="$(arg right_prefix)" parent="$(arg prefix)right_shoulder_link"/> -->
+<!--    &lt;!&ndash; Load arm camera &ndash;&gt;-->
+<!--    <xacro:load_arm_camera prefix="$(arg right_prefix)cam_" camera_name="right_arm_cam" arm_camera_base="$(arg right_prefix)camera_link"-->
+<!--                           width="858" height="720" update_rate="30" wide_flag="true"/> -->
 
-    <!-- Load the left arm -->
-    <xacro:load_robot arm="$(arg arm)" gripper="$(arg gripper)" dof="$(arg dof)" 
-                    vision="$(arg vision)" sim="$(arg sim)" 
-                    prefix="$(arg left_prefix)" parent="$(arg prefix)left_shoulder_link"/> 
-    <!-- Load arm camera -->
-    <xacro:load_arm_camera prefix="$(arg left_prefix)cam_" camera_name="left_arm_cam" arm_camera_base="$(arg left_prefix)camera_link"
-                           width="858" height="720" update_rate="30" wide_flag="true"/> 
+<!--    &lt;!&ndash; Load the left arm &ndash;&gt;-->
+<!--    <xacro:load_robot arm="$(arg arm)" gripper="$(arg gripper)" dof="$(arg dof)" -->
+<!--                    vision="$(arg vision)" sim="$(arg sim)" -->
+<!--                    prefix="$(arg left_prefix)" parent="$(arg prefix)left_shoulder_link"/> -->
+<!--    &lt;!&ndash; Load arm camera &ndash;&gt;-->
+<!--    <xacro:load_arm_camera prefix="$(arg left_prefix)cam_" camera_name="left_arm_cam" arm_camera_base="$(arg left_prefix)camera_link"-->
+<!--                           width="858" height="720" update_rate="30" wide_flag="true"/> -->
 
     <!-- Load main camera -->
     <xacro:load_main_camera prefix="$(arg prefix)main_cam_" camera_name="main_cam" main_camera_base="$(arg prefix)torso"

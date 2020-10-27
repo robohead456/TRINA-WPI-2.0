@@ -76,4 +76,50 @@
         <param name="amcl/initial_pose_a" value="1.57" />
     </group>
 
+<!--    <arg name="robot_name_2" default="$(arg robot_name)_2"/>-->
+<!--    <group ns="$(arg robot_name_2)">-->
+
+<!--        <include file="$(find trina2_gazebo)/launch/trina2_single.launch" >-->
+<!--            <arg name="robot_name" value="$(arg robot_name_2)"/>-->
+<!--            <arg name="prefix" value="$(arg robot_name_2)/"/>-->
+<!--            <arg name="right_prefix" value="$(arg robot_name_2)/$(arg right_arm_prefix)" />-->
+<!--            <arg name="left_prefix" value="$(arg robot_name_2)/$(arg left_arm_prefix)" />-->
+<!--            <arg name="arm" value="$(arg arm)"/>-->
+<!--            <arg name="dof" value="$(arg dof)"/>-->
+<!--            <arg name="vision" value="$(arg vision)"/>-->
+<!--            <arg name="gripper" value="$(arg gripper)" />-->
+<!--            <arg name="cyclic_data_publish_rate"  value="$(arg cyclic_data_publish_rate)"/>-->
+
+<!--            <arg name="x0" value="0"/>-->
+<!--            <arg name="y0" value="-2"/>-->
+<!--            <arg name="yaw" value="1.57"/>-->
+<!--        </include>-->
+<!--        <param name="amcl/initial_pose_x" value="0" />-->
+<!--        <param name="amcl/initial_pose_y" value="7.5" />-->
+<!--        <param name="amcl/initial_pose_a" value="1.57" />-->
+<!--    </group>-->
+
+
+<!--    <arg name="robot_name_3" default="$(arg robot_name)_3"/>-->
+<!--    <group ns="$(arg robot_name_3)">-->
+
+<!--        <include file="$(find trina2_gazebo)/launch/trina2_single.launch" >-->
+<!--            <arg name="robot_name" value="$(arg robot_name_3)"/>-->
+<!--            <arg name="prefix" value="$(arg robot_name_3)/"/>-->
+<!--            <arg name="right_prefix" value="$(arg robot_name_3)/$(arg right_arm_prefix)" />-->
+<!--            <arg name="left_prefix" value="$(arg robot_name_3)/$(arg left_arm_prefix)" />-->
+<!--            <arg name="arm" value="$(arg arm)"/>-->
+<!--            <arg name="dof" value="$(arg dof)"/>-->
+<!--            <arg name="vision" value="$(arg vision)"/>-->
+<!--            <arg name="gripper" value="$(arg gripper)" />-->
+<!--            <arg name="cyclic_data_publish_rate"  value="$(arg cyclic_data_publish_rate)"/>-->
+
+<!--            <arg name="x0" value="0"/>-->
+<!--            <arg name="y0" value="7.5"/>-->
+<!--            <arg name="yaw" value="1.57"/>-->
+<!--        </include>-->
+<!--        <param name="amcl/initial_pose_x" value="0" />-->
+<!--        <param name="amcl/initial_pose_y" value="7.5" />-->
+<!--        <param name="amcl/initial_pose_a" value="1.57" />-->
+<!--    </group>-->
 </launch>
