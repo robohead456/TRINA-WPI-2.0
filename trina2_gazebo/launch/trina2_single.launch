@@ -100,18 +100,16 @@
             left_arm_joint_6_position_controller
             left_arm_joint_7_position_controller"/>
 
-    <!-- Start other arm controllers -->
-    <node name="$(arg arm)_controllers_spawner" pkg="controller_manager" type="spawner" 
+    <!-- Start gripper controllers -->
+    <node name="$(arg gripper)_controllers_spawner" pkg="controller_manager" type="spawner" 
         respawn="false" output="screen" args="
-            right_arm_joint_state_controller 
             right_arm_$(arg gripper)_gripper_controller
-
-            left_arm_joint_state_controller 
             left_arm_$(arg gripper)_gripper_controller"/>
 
     <!-- Start base and camera controllers -->
     <node name="other_controllers_spawner" pkg="controller_manager" type="spawner" 
         respawn="false" output="screen" args="
+            joint_state_controller 
             base_controller
             main_cam_pitch_controller
             main_cam_yaw_controller"/>
