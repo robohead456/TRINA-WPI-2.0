@@ -77,21 +77,30 @@ class MoveGroupPythonInteface(object):
 
         # The go command can be called with joint values, poses, or without any
         # parameters if you have already set the pose or joint target for the group
-        while True:
-            move_group1.go(joint_goal1, wait=True)
-            current_joints1 = move_group1.get_current_joint_values()
-            if all_close(joint_goal1, current_joints1, 0.01):
-                break
-            
-        while True:
-            move_group2.go(joint_goal2, wait=True)
-            current_joints2 = move_group2.get_current_joint_values()
-            if all_close(joint_goal2, current_joints2, 0.01):
-                break
+        # move_group1.go(joint_goal1, wait=True)
+
+        # Move the robot arm to home position
+        # 10 trials
+        move_to_goal(move_group1, joint_goal1, 10)
+        move_to_goal(move_group2, joint_goal2, 10)
 
         # Calling ``stop()`` ensures that there is no residual movement
         move_group1.stop()
         move_group2.stop()
+
+    def move_to_goal(move_group, joint_goal, trials):
+        trial = 0
+        while True:
+            move_group.go(joint_goal, wait=True)
+            current_joints = move_group.get_current_joint_values()
+            if all_close(joint_goal, current_joints, 0.05):
+                break
+            
+            # Check trial times
+            trial += 1
+            if trial > 9:
+                rospy.loginfo("Moving arm to home failed")
+                break
 
 
 def all_close(goal, actual, tolerance):
@@ -120,13 +129,6 @@ def all_close(goal, actual, tolerance):
 
 def main():
     try:
-        # Unpause the physics
-        rospy.loginfo("Unpausing Gazebo...")
-        rospy.wait_for_service('/gazebo/unpause_physics')
-        unpause_gazebo = rospy.ServiceProxy('/gazebo/unpause_physics', Empty)
-        resp = unpause_gazebo()
-        rospy.loginfo("Unpaused Gazebo.")
-
         # Home robot arm
         interface = MoveGroupPythonInteface()
         interface.home_robot()

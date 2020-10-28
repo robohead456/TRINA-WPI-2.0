@@ -129,9 +129,7 @@
     </include> 
 
     <!-- Home the robot -->
-    <arg name="start_delay_seconds" default="6"/>
-    <node name="home_the_arm" pkg="trina2_control" type="home_robot.py" output="screen" respawn="false"
-    launch-prefix="bash -c 'sleep $(arg start_delay_seconds); $0 $@'"/>
+    <node name="home_the_arm" pkg="trina2_control" type="home_robot.py" output="screen" respawn="false"/>
     
     <!-- TODO Driver is needed when a real Kinova robot is used-->
     <?ignore
