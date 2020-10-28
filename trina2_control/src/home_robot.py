@@ -80,13 +80,13 @@ class MoveGroupPythonInteface(object):
         while True:
             move_group1.go(joint_goal1, wait=True)
             current_joints1 = move_group1.get_current_joint_values()
-            if all_close(joint_goal1, current_joints1, 0.01):
+            if all_close(joint_goal1, current_joints1, 0.05):
                 break
             
         while True:
             move_group2.go(joint_goal2, wait=True)
             current_joints2 = move_group2.get_current_joint_values()
-            if all_close(joint_goal2, current_joints2, 0.01):
+            if all_close(joint_goal2, current_joints2, 0.05):
                 break
 
         # Calling ``stop()`` ensures that there is no residual movement
@@ -120,13 +120,6 @@ def all_close(goal, actual, tolerance):
 
 def main():
     try:
-        # Unpause the physics
-        rospy.loginfo("Unpausing Gazebo...")
-        rospy.wait_for_service('/gazebo/unpause_physics')
-        unpause_gazebo = rospy.ServiceProxy('/gazebo/unpause_physics', Empty)
-        resp = unpause_gazebo()
-        rospy.loginfo("Unpaused Gazebo.")
-
         # Home robot arm
         interface = MoveGroupPythonInteface()
         interface.home_robot()
