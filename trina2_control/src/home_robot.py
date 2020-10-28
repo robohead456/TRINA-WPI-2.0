@@ -81,14 +81,14 @@ class MoveGroupPythonInteface(object):
 
         # Move the robot arm to home position
         # 10 trials
-        move_to_goal(move_group1, joint_goal1, 10)
-        move_to_goal(move_group2, joint_goal2, 10)
+        self.move_to_goal(move_group1, joint_goal1, 10)
+        self.move_to_goal(move_group2, joint_goal2, 10)
 
         # Calling ``stop()`` ensures that there is no residual movement
         move_group1.stop()
         move_group2.stop()
 
-    def move_to_goal(move_group, joint_goal, trials):
+    def move_to_goal(self, move_group, joint_goal, trials):
         trial = 0
         while True:
             move_group.go(joint_goal, wait=True)
