@@ -1,9 +1,5 @@
 # Publish all joint states -----------------------------------
-right_arm_joint_state_controller:
-  type: joint_state_controller/JointStateController
-  publish_rate: 50  
-
-left_arm_joint_state_controller:
+joint_state_controller:
   type: joint_state_controller/JointStateController
   publish_rate: 50  
 
