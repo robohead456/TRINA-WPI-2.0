@@ -27,7 +27,7 @@ base_controller:
   # Whenever a min_* is unspecified, default to -max_*
   linear:
     x:
-      has_velocity_limits    : false
+      has_velocity_limits    : true
       max_velocity           : 1.5  # m/s
       has_acceleration_limits: true
       max_acceleration       : 5  # m/s^2
@@ -35,7 +35,7 @@ base_controller:
       # max_jerk               : 4.0  # m/s^3
   angular:
     z:
-      has_velocity_limits    : false
+      has_velocity_limits    : true
       max_velocity           : 2  # rad/s
       has_acceleration_limits: true
       max_acceleration       : 10  # rad/s^2
