@@ -5,6 +5,7 @@
   <arg name="scan" default="base_scan"/>
   <arg name="base_frame" default="$(arg prefix)base_link"/>
   <arg name="cmd_vel" default="base_controller/cmd_vel"/>
+  <arg name="laser_frame" default="$(arg prefix)laser_link"/>
 
   <!-- AMCL Node -->
   <node name="amcl" pkg="amcl" type="amcl" output="screen">

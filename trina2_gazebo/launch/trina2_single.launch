@@ -171,4 +171,8 @@
         <arg name="prefix" value="$(arg prefix)"/>
     </include>
 
+        <!-- Send boot message -->
+    <node name="boot_message" pkg="trina2_control" type="send_boot_message.py"
+          args = "$(arg robot_name)"/>
+
 </launch>
