@@ -1,6 +1,5 @@
 /**
 Software License Agreement (BSD)
-\file      teleop_node.cpp
 \authors   Mike Purvis <mpurvis@clearpathrobotics.com>
 \copyright Copyright (c) 2014, Clearpath Robotics, Inc., All rights reserved.
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that
@@ -20,19 +19,27 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCL
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-/**
-Modified version for camera control with joy stick
-*/
+#ifndef TELEOP_TWIST_JOY_TELEOP_TWIST_JOY_H
+#define TELEOP_TWIST_JOY_TELEOP_TWIST_JOY_H
 
-#include "ros/ros.h"
-#include "camera_control_twist_joy/camera_control_twist_joy.h"
+namespace ros { class NodeHandle; }
 
-int main(int argc, char *argv[])
+namespace teleop_twist_joy
 {
-  ros::init(argc, argv, "camera_control_node");
 
-  ros::NodeHandle nh(""), nh_param("~");
-  camera_control_twist_joy::CameraControlTwistJoy joy_teleop(&nh, &nh_param);
+/**
+ * Class implementing a basic Joy -> Twist translation.
+ */
+class TeleopTwistJoy
+{
+public:
+  TeleopTwistJoy(ros::NodeHandle* nh, ros::NodeHandle* nh_param);
 
-  ros::spin();
-}
+private:
+  struct Impl;
+  Impl* pimpl_;
+};
+
+}  // namespace teleop_twist_joy
+
+#endif  // TELEOP_TWIST_JOY_TELEOP_TWIST_JOY_H

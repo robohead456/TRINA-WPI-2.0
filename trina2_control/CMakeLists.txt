@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   sensor_msgs
   std_msgs
+  ros_falcon
 )
 
 ## System dependencies are found with CMake's conventions
@@ -106,7 +107,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
    INCLUDE_DIRS include
-   LIBRARIES camera_control_twist_joy
+   LIBRARIES teleop_twist_joy
    CATKIN_DEPENDS geometry_msgs sensor_msgs roscpp rospy std_msgs
 #  DEPENDS system_lib
 )
@@ -124,7 +125,7 @@ include_directories(
 
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
-  src/camera_control_twist_joy
+  src/teleop_twist_joy
 )
 
 ## Add cmake target dependencies of the library
@@ -136,11 +137,17 @@ add_library(${PROJECT_NAME}
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/trina2_control_node.cpp)
+
+add_executable(falcon_interface src/falcon_interface.cpp)
+target_link_libraries(falcon_interface ${catkin_LIBRARIES})
+add_dependencies(falcon_interface ${catkin_EXPORTED_TARGETS})
+
 add_executable(main_camera_control_interface src/main_camera_control_interface.cpp)
 target_link_libraries(main_camera_control_interface ${catkin_LIBRARIES})
-add_executable(camera_control_node src/camera_control_node.cpp)
-target_link_libraries(camera_control_node ${PROJECT_NAME} ${catkin_LIBRARIES})
-set_target_properties(camera_control_node PROPERTIES OUTPUT_NAME camera_control_node PREFIX "")
+
+add_executable(teleop_twist_joy src/teleop_twist_joy.cpp)
+target_link_libraries(teleop_twist_joy ${PROJECT_NAME} ${catkin_LIBRARIES})
+set_target_properties(teleop_twist_joy PROPERTIES OUTPUT_NAME teleop_twist_joy PREFIX "")
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -161,7 +168,7 @@ set_target_properties(camera_control_node PROPERTIES OUTPUT_NAME camera_control_
 ## Install ##
 #############
 
-install(TARGETS ${PROJECT_NAME} camera_control_node
+install(TARGETS ${PROJECT_NAME} teleop_twist_joy
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
