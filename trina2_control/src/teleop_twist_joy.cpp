@@ -86,20 +86,20 @@ TeleopTwistJoy::TeleopTwistJoy(ros::NodeHandle* nh, ros::NodeHandle* nh_param)
 
   nh_param->param<int>("turbo_button", pimpl_->turbo_button, 0);
   
-  if (nh_param->getParam("axis_base_linear_for", pimpl_->axis_base_linear_map) &&
-      nh_param->getParam("axis_base_linear_bac", pimpl_->axis_base_linear_map))
+  if (nh_param->getParam("axis_base_linear_fwd", pimpl_->axis_base_linear_map) &&
+      nh_param->getParam("axis_base_linear_bwd", pimpl_->axis_base_linear_map))
   {
     nh_param->getParam("scale_base_linear", pimpl_->scale_base_linear_map["normal"]);
     nh_param->getParam("scale_base_linear_turbo", pimpl_->scale_base_linear_map["turbo"]);
   }
   else
   {
-    nh_param->param<int>("axis_base_linear_for", pimpl_->axis_base_linear_map["x_for"], 5);
-    nh_param->param<int>("axis_base_linear_bac", pimpl_->axis_base_linear_map["x_bac"], 2);
-    nh_param->param<double>("scale_base_linear", pimpl_->scale_base_linear_map["normal"]["x_for"], 0.5);
-    nh_param->param<double>("scale_base_linear", pimpl_->scale_base_linear_map["normal"]["x_bac"], 0.5);
-    nh_param->param<double>("scale_base_linear_turbo", pimpl_->scale_base_linear_map["turbo"]["x_for"], 1.0);
-    nh_param->param<double>("scale_base_linear_turbo", pimpl_->scale_base_linear_map["turbo"]["x_bac"], 1.0);
+    nh_param->param<int>("axis_base_linear_fwd", pimpl_->axis_base_linear_map["x_fwd"], 5);
+    nh_param->param<int>("axis_base_linear_bwd", pimpl_->axis_base_linear_map["x_bwd"], 2);
+    nh_param->param<double>("scale_base_linear", pimpl_->scale_base_linear_map["normal"]["x_fwd"], 0.5);
+    nh_param->param<double>("scale_base_linear", pimpl_->scale_base_linear_map["normal"]["x_bwd"], 0.5);
+    nh_param->param<double>("scale_base_linear_turbo", pimpl_->scale_base_linear_map["turbo"]["x_fwd"], 1.0);
+    nh_param->param<double>("scale_base_linear_turbo", pimpl_->scale_base_linear_map["turbo"]["x_bwd"], 1.0);
   }
 
   if (nh_param->getParam("axis_base_angular", pimpl_->axis_base_angular_map))
@@ -179,8 +179,8 @@ void TeleopTwistJoy::Impl::sendCmdVelMsg(const sensor_msgs::Joy::ConstPtr& joy_m
   cmd_vel_msg.linear.x = 0;
   cmd_vel_msg.angular.z = 0;
 
-  double x_forward = - getVal(joy_msg, axis_base_linear_map, scale_base_linear_map[which_map], "x_for");
-  double x_backward = - getVal(joy_msg, axis_base_linear_map, scale_base_linear_map[which_map], "x_bac");
+  double x_forward = - getVal(joy_msg, axis_base_linear_map, scale_base_linear_map[which_map], "x_fwd");
+  double x_backward = - getVal(joy_msg, axis_base_linear_map, scale_base_linear_map[which_map], "x_bwd");
   if (x_forward != 0 && x_backward != 0)
   {
     cmd_vel_msg.linear.x = (x_forward - x_backward) /2;
