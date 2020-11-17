@@ -128,8 +128,8 @@
         <arg name="left_prefix" value="$(arg left_prefix)" />
     </include> 
 
-    <!-- Home the robot -->
-    <node name="home_the_arm" pkg="trina2_control" type="home_robot.py" output="screen" respawn="false"/>
+    <!-- Start MoveIt interface and home the robot -->
+    <node name="move_group_interface" pkg="trina2_control" type="move_group_interface.py" output="screen" respawn="false"/>
     
     <!-- TODO Driver is needed when a real Kinova robot is used-->
     <?ignore

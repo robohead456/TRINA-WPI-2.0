@@ -110,7 +110,7 @@ class MoveGroupPythonInteface(object):
             
             # Check trial times
             trial += 1
-            if trial > trials:
+            if trial >= trials:
                 rospy.loginfo("Moving arm to goal failed")
                 break
         
@@ -135,7 +135,7 @@ class MoveGroupPythonInteface(object):
             
             # Check trial times
             trial += 1
-            if trial > trials:
+            if trial >= trials:
                 rospy.loginfo("Moving arm to pose failed")
                 break
         
@@ -145,16 +145,16 @@ class MoveGroupPythonInteface(object):
         move_group.clear_pose_targets()
 
     # Control end effector with velocity command
-    def set_cartesian_vel(self, move_group, vel_command, scale=0.1, trials=1, wait=False):
+    def set_cartesian_vel(self, move_group, vel_command, scale=0.05, trials=1, wait=False):
         ## Cartesian Paths
         ## ^^^^^^^^^^^^^^^
         ## You can plan a Cartesian path directly by specifying a list of waypoints
         ## for the end-effector to go through.
         waypoints = []
         wpose = move_group.get_current_pose().pose
-        wpose.position.x += scale * vel_command.linear.x
-        wpose.position.z += scale * vel_command.linear.y
-        wpose.position.y += scale * vel_command.linear.z
+        wpose.position.x += scale * vel_command.linear.y
+        wpose.position.y += - scale * vel_command.linear.x
+        wpose.position.z += scale * vel_command.linear.z
         waypoints.append(copy.deepcopy(wpose))
 
         # We want the Cartesian path to be interpolated at a resolution of 1 cm
@@ -173,13 +173,13 @@ class MoveGroupPythonInteface(object):
             
             # Check trial times
             trial += 1
-            if trial > trials:
+            if trial >= trials:
                 rospy.loginfo("Moving arm to pose failed")
                 break
 
     # Default robot pose
     def home_robot(self):
-        left_joint_goal = [-2.1, 1.57, 1.57, 1.57, 0.0, 0.0, 1.57]
+        left_joint_goal = [-1.57, 1.57, 1.57, 1.57, 0.0, 0.0, 1.57]
         right_joint_goal = [-2.8, 1.57, 0.0, 1.1, 0.2, 2.015, -3.05]
 
         # Move the robot arm to home position # 10 trials
