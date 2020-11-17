@@ -49,7 +49,7 @@ class HapticControl():
 
         twist_cmd = Twist()
         twist_cmd.linear.x = self.base_linear_vel_fwd - self.base_linear_vel_bwd
-        twist_cmd.angular.z = twist_cmd.linear.x * self.steering_ratio * self.steering_angle
+        twist_cmd.angular.z = self.steering_ratio * self.steering_angle
 
         self.cmd_vel_pub.publish(twist_cmd)
 
