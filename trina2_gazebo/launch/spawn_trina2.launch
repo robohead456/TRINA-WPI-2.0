@@ -1,0 +1,39 @@
+<launch>
+
+    <!-- Arguments -->
+    <!-- Robot name -->
+    <arg name="robot_name" default="trina2"/>
+    <!-- Arm and gripper type -->
+    <arg name="arm" default="gen3"/>
+    <!-- Number of degrees of freedom of the arm -->
+    <arg name="dof" default="7"/> 
+    <!-- True if the arm has a Vision module -->
+    <arg name="vision" default="true"/> 
+    <arg name="gripper" default="robotiq_2f_85" />
+
+    <!-- Gazebo parameters -->
+    <arg name="cyclic_data_publish_rate" default="30"/> <!--Hz-->
+    
+
+    <!-- Load robots -->
+    <arg name="robot_name_1" default="$(arg robot_name)_1"/>
+    <group ns="$(arg robot_name_1)">
+    
+        <include file="$(find trina2_gazebo)/launch/trina2_single.launch" >
+            <arg name="robot_name" value="$(arg robot_name_1)"/>
+            <arg name="arm" value="$(arg arm)"/>
+            <arg name="dof" value="$(arg dof)"/> 
+            <arg name="vision" value="$(arg vision)"/> 
+            <arg name="gripper" value="$(arg gripper)" />
+            <arg name="cyclic_data_publish_rate"  value="$(arg cyclic_data_publish_rate)"/>
+            
+            <arg name="x0" value="-8"/>
+            <arg name="y0" value="-11"/>
+            <arg name="yaw" value="0"/>
+        </include>
+        <param name="amcl/initial_pose_x" value="-8" />
+        <param name="amcl/initial_pose_y" value="-11" />
+        <param name="amcl/initial_pose_a" value="0" />
+    </group>
+
+</launch>

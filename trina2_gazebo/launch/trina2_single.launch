@@ -53,7 +53,7 @@
             -J $(arg right_prefix)joint_6 1.95
             -J $(arg right_prefix)joint_7 -3.05
 
-            -J $(arg left_prefix)joint_1 -2.1
+            -J $(arg left_prefix)joint_1 -2.2
             -J $(arg left_prefix)joint_2 1.57
             -J $(arg left_prefix)joint_3 1.57
             -J $(arg left_prefix)joint_4 1.57
@@ -78,8 +78,8 @@
     <!-- Start the arm trajectory controllers -->
     <node name="$(arg arm)_trajectory_controller_spawner" pkg="controller_manager" type="spawner" 
         respawn="false" output="screen" args=" 
-            right_arm_$(arg arm)_joint_trajectory_controller 
-            left_arm_$(arg arm)_joint_trajectory_controller" />
+            left_arm_$(arg arm)_joint_trajectory_controller
+            right_arm_$(arg arm)_joint_trajectory_controller" />
 
     <!-- Start the arm position controllers -->
     <node name="$(arg arm)_position_controllers_spawner" pkg="controller_manager" type="spawner" 
@@ -135,7 +135,7 @@
     <?ignore
     <!-- Start simulated Kortex Driver -->
     <!--launch-prefix="gdb -ex run args"-->
-    <node name="$(arg robot_name)_$(arg right_prefix)_driver" pkg="kortex_driver" type="kortex_arm_driver" output="screen">
+    <node name="right_arm_driver" pkg="kortex_driver" type="kortex_arm_driver" output="screen">
         <param name="sim" value="true"/>
         <param name="cyclic_data_publish_rate" value="$(arg cyclic_data_publish_rate)"/>
         <param name="arm" value="$(arg arm)"/>
@@ -147,15 +147,14 @@
         <rosparam command="load" file="$(find trina2_description)/arms/config/right_twist_limits.yaml" subst_value="true"/>
         <rosparam command="load" file="$(find trina2_description)/grippers/config/right_joint_limits.yaml" subst_value="true"/>
     </node>
-    
-    <node name="$(arg left_prefix)_driver" pkg="kortex_driver" type="kortex_arm_driver" output="screen">
+    <node name="left_arm_driver" pkg="kortex_driver" type="kortex_arm_driver" output="screen">
         <param name="sim" value="true"/>
         <param name="cyclic_data_publish_rate" value="$(arg cyclic_data_publish_rate)"/>
         <param name="arm" value="$(arg arm)"/>
         <param name="gripper" value="$(arg gripper)"/>
         <param name="dof" value="$(arg dof)"/>
         <param name="robot_name" value="$(arg robot_name)"/>
-        <param name="prefix" value="$(arg left_prefix)"/>
+        <param name="prefix" value="left_arm_"/>
         <rosparam command="load" file="$(find trina2_description)/arms/config/left_joint_limits.yaml" subst_value="true"/>
         <rosparam command="load" file="$(find trina2_description)/arms/config/left_twist_limits.yaml" subst_value="true"/>
         <rosparam command="load" file="$(find trina2_description)/grippers/config/left_joint_limits.yaml" subst_value="true"/>
