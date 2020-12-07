@@ -153,7 +153,7 @@ aluminum peripherial evaluation case.
     <xacro:if value="${wide_flag}">
     <xacro:gazebo_d435 camera_name="${name}_wide" reference_link="${prefix}link" 
                       color_optical_frame="${name}_color_optical_frame" 
-                      fov="114" width="${1.3125*width}" height="${height}"
+                      fov="114" width="${1.5555*width}" height="${height}"
                       update_rate="${update_rate}"/>
     </xacro:if>
 

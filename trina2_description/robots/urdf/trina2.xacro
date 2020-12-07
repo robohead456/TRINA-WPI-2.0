@@ -34,7 +34,7 @@
                     prefix="$(arg right_prefix)" parent="$(arg prefix)right_shoulder_link"/> 
     <!-- Load arm camera -->
     <xacro:load_arm_camera prefix="$(arg right_prefix)cam_" camera_name="right_arm_cam" arm_camera_base="$(arg right_prefix)camera_link"
-                           width="858" height="720" update_rate="30" wide_flag="true"/> 
+                           width="1080" height="720" update_rate="30" wide_flag="true"/> 
 
     <!-- Load the left arm -->
     <xacro:load_robot arm="$(arg arm)" gripper="$(arg gripper)" dof="$(arg dof)" 
@@ -42,11 +42,11 @@
                     prefix="$(arg left_prefix)" parent="$(arg prefix)left_shoulder_link"/> 
     <!-- Load arm camera -->
     <xacro:load_arm_camera prefix="$(arg left_prefix)cam_" camera_name="left_arm_cam" arm_camera_base="$(arg left_prefix)camera_link"
-                           width="858" height="720" update_rate="30" wide_flag="true"/> 
+                           width="1080" height="720" update_rate="30" wide_flag="true"/> 
 
     <!-- Load main camera -->
     <xacro:load_main_camera prefix="$(arg prefix)main_cam_" camera_name="main_cam" main_camera_base="$(arg prefix)torso"
-                            width="858" height="720" update_rate="30" wide_flag="true"/>
+                            width="1080" height="720" update_rate="30" wide_flag="true"/>
 
 
     <!-- Load gazebo control pulgin ONLY ONCE -->
