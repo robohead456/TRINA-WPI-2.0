@@ -179,7 +179,7 @@ class MoveGroupPythonInteface(object):
 
     # Default robot pose
     def home_robot(self):
-        left_joint_goal = [-1.57, 1.57, 1.57, 1.57, 0.0, 0.0, 1.57]
+        left_joint_goal = [-2.2, 1.57, 1.57, 1.57, 0.0, 0.0, 1.57]
         right_joint_goal = [-2.8, 1.57, 0.0, 1.1, 0.2, 2.015, -3.05]
 
         # Move the robot arm to home position # 10 trials
