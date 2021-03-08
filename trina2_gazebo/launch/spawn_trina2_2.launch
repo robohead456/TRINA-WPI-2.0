@@ -27,20 +27,43 @@
             <arg name="gripper" value="$(arg gripper)" />
             <arg name="cyclic_data_publish_rate"  value="$(arg cyclic_data_publish_rate)"/>
             
-            <arg name="x0" value="-8"/>
-            <arg name="y0" value="-11"/>
-            <arg name="yaw" value="0"/>
+            <arg name="x0" value="7"/>
+            <arg name="y0" value="-4"/>
+            <arg name="yaw" value="3.14"/>
         </include>
-        <param name="amcl/initial_pose_x" value="-8" />
-        <param name="amcl/initial_pose_y" value="-11" />
-        <param name="amcl/initial_pose_a" value="0" />
+        <param name="amcl/initial_pose_x" value="7" />
+        <param name="amcl/initial_pose_y" value="-4" />
+        <param name="amcl/initial_pose_a" value="3.14" />
 
         <node name="bag_location" pkg="trina2_gazebo" type="bag_location.py"
             respawn="false" output="screen" />
     </group>
-
     <include file="$(find trina2_control)/launch/joystick_control.launch">
         <arg name="robot_name" value="$(arg robot_name_1)"/>
     </include>
+
+    <!-- Leader Robot -->
+    <arg name="robot_name_2" default="$(arg robot_name)_2"/>
+    <group ns="$(arg robot_name_2)">
+    
+        <include file="$(find trina2_gazebo)/launch/trina2_single.launch" >
+            <arg name="robot_name" value="$(arg robot_name_2)"/>
+            <arg name="arm" value="$(arg arm)"/>
+            <arg name="dof" value="$(arg dof)"/> 
+            <arg name="vision" value="$(arg vision)"/> 
+            <arg name="gripper" value="$(arg gripper)" />
+            <arg name="cyclic_data_publish_rate"  value="$(arg cyclic_data_publish_rate)"/>
+            
+            <arg name="x0" value="6"/>
+            <arg name="y0" value="-4"/>
+            <arg name="yaw" value="-1.57"/>
+        </include>
+        <param name="amcl/initial_pose_x" value="6" />
+        <param name="amcl/initial_pose_y" value="-4" />
+        <param name="amcl/initial_pose_a" value="-1.57" />
+
+        <node name="move_robot" pkg="trina2_gazebo" type="move_robot.py"
+            respawn="false" output="screen" />
+    </group>
 
 </launch>
