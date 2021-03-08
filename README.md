@@ -39,6 +39,7 @@ This repository has been developed and tested in Ubuntu 18.04 and ROS Melodic on
   
 - `teleop-twist-keyboard`: Control differential drive mobile robot with keyboard
   
+  - `sudo apt-get install python-pygame`
   - `sudo apt-get install ros-melodic-teleop-twist-keyboard`
   
 - `teleop_twist_joy` and `joystick_drivers`: Joystick drivers for joystick teleoperation
