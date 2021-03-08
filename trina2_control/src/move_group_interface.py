@@ -8,6 +8,7 @@ import copy
 import rospy
 import moveit_commander
 import moveit_msgs.msg
+import numpy as np
 from math import pi
 from std_msgs.msg import String, Empty, Float64, Float64MultiArray
 from geometry_msgs.msg import Pose, PoseStamped, Twist
@@ -99,10 +100,6 @@ class MoveGroupPythonInteface(object):
 
         trial = 0
         while True:
-            # The go command can be called with joint values, poses, or without any
-            # parameters if you have already set the pose or joint target for the group
-            move_group.go(joint_goal, wait=wait)
-
             # For testing:
             current_joints = move_group.get_current_joint_values()
             if all_close(joint_goal, current_joints, 0.05, angular=True):
@@ -110,9 +107,13 @@ class MoveGroupPythonInteface(object):
             
             # Check trial times
             trial += 1
-            if trial >= trials:
+            if trial > trials:
                 rospy.loginfo("Moving arm to goal failed")
                 break
+
+            # The go command can be called with joint values, poses, or without any
+            # parameters if you have already set the pose or joint target for the group
+            move_group.go(joint_goal, wait=wait)
         
         # Calling ``stop()`` ensures that there is no residual movement
         move_group.stop()
@@ -124,20 +125,20 @@ class MoveGroupPythonInteface(object):
         ## We can plan a motion for this group to a desired pose for the end-effector:
         trial = 0
         while True:
-            move_group.set_pose_target(pose_goal)
-            ## Now, we call the planner to compute the plan and execute it.
-            plan = move_group.go(wait=wait)
-
             # For testing:
-            current_pose = self.move_group.get_current_pose().pose
+            current_pose = move_group.get_current_pose().pose
             if all_close(pose_goal, current_pose, 0.05):
                 break
             
             # Check trial times
             trial += 1
-            if trial >= trials:
+            if trial > trials:
                 rospy.loginfo("Moving arm to pose failed")
                 break
+
+            move_group.set_pose_target(pose_goal)
+            ## Now, we call the planner to compute the plan and execute it.
+            plan = move_group.go(wait=wait)
         
         # Calling `stop()` ensures that there is no residual movement
         move_group.stop()
@@ -166,25 +167,26 @@ class MoveGroupPythonInteface(object):
                                         waypoints,   # waypoints to follow
                                         0.01,        # eef_step
                                         0.0)         # jump_threshold
-
         trial = 0
         while True:
-            move_group.execute(plan, wait=wait)
-            
             # Check trial times
             trial += 1
-            if trial >= trials:
+            if trial > trials:
                 rospy.loginfo("Moving arm to pose failed")
                 break
+
+            move_group.execute(plan, wait=wait)
 
     # Default robot pose
     def home_robot(self):
         left_joint_goal = [-2.2, 1.57, 1.57, 1.57, 0.0, 0.0, 1.57]
-        right_joint_goal = [-2.8, 1.57, 0.0, 1.1, 0.2, 2.015, -3.05]
+        right_joint_goal = [-2.7, 1.5, 0.0, 1.43, 0.07, 1.71, 3.14]
 
         # Move the robot arm to home position # 10 trials
         self.set_joint(self.move_group_left_arm, left_joint_goal, trials=10, wait=True)
         self.set_joint(self.move_group_right_arm, right_joint_goal, trials=10, wait=True)
+
+        print(self.move_group_right_arm.get_current_pose().pose)
 
 
 def all_close(goal, actual, tolerance, angular=False):
@@ -207,10 +209,10 @@ def all_close(goal, actual, tolerance, angular=False):
                     return False
 
     elif type(goal) is PoseStamped:
-        return angular_close(goal.pose, actual.pose, tolerance)
+        return all_close(goal.pose, actual.pose, tolerance, angular)
 
     elif type(goal) is Pose:
-        return angular_close(pose_to_list(goal), pose_to_list(actual), tolerance)
+        return all_close(pose_to_list(goal), pose_to_list(actual), tolerance, angular)
 
     return True
 

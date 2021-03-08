@@ -128,7 +128,7 @@ TeleopTwistJoy::TeleopTwistJoy(ros::NodeHandle* nh, ros::NodeHandle* nh_param)
         pimpl_->scale_camera_angular_map["turbo"]["pitch"], pimpl_->scale_camera_angular_map["normal"]["pitch"]);
       
     nh_param->param<int>("axis_camera_angular_yaw", pimpl_->axis_camera_angular_map["yaw"], 3);
-    nh_param->param<double>("scale_camera_angular", pimpl_->scale_camera_angular_map["normal"]["yaw"], 1.0);
+    nh_param->param<double>("scale_camera_angular", pimpl_->scale_camera_angular_map["normal"]["yaw"], 0.8);
     nh_param->param<double>("scale_camera_angular_turbo",
         pimpl_->scale_camera_angular_map["turbo"]["yaw"], pimpl_->scale_camera_angular_map["normal"]["yaw"]);
   }
