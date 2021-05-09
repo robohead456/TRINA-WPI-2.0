@@ -40,7 +40,7 @@
         <arg name="gui" value="$(arg gazebo_gui)"/>
         <arg name="use_sim_time" value="$(arg use_sim_time)"/>
         <arg name="debug" value="$(arg debug)"/>
-        <arg name="paused" value="$(arg paused)"/> 
+        <arg name="paused" value="true"/> 
         <arg name="world_name" value="$(arg world_file)"/>
     </include>
 
