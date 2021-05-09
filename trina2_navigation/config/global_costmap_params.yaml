@@ -3,3 +3,4 @@ global_costmap:
    robot_base_frame: $(arg base_frame)
    update_frequency: 5.0
    static_map: true
+   allow_unknown: false

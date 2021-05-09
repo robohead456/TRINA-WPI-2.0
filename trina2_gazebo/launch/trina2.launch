@@ -27,7 +27,7 @@
     <arg name="cyclic_data_publish_rate" default="30"/> <!--Hz-->
     <!-- use trajectory controllers and MoveIt -->
     <arg name="use_trajectory_controller" default="true"/>
-    <arg name="paused" default="$(arg use_trajectory_controller)"/>
+    <arg name="paused" default="false"/>
 
     <!-- Gazebo environment -->
     <env name="GAZEBO_MODEL_PATH" value="$(find hospital_gazebo)/models:${GAZEBO_MODEL_PATH}" />
